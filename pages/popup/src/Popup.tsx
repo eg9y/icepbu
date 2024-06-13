@@ -7,6 +7,16 @@ import { ComponentPropsWithoutRef } from 'react';
 const Popup = () => {
   const theme = useStorageSuspense(exampleThemeStorage);
 
+  const getOdometer = () => {
+    chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
+      chrome.tabs.sendMessage(tabs[0].id!, { action: 'getOdometer' }, (response: any) => {
+        if (response) {
+          console.log('response:', response);
+        }
+      });
+    });
+  };
+
   return (
     <div
       className="App"
@@ -14,19 +24,9 @@ const Popup = () => {
         backgroundColor: theme === 'light' ? '#eee' : '#222',
       }}>
       <header className="App-header" style={{ color: theme === 'light' ? '#222' : '#eee' }}>
-        <img src={chrome.runtime.getURL('newtab/logo.svg')} className="App-logo" alt="logo" />
-
-        <p>
-          Edit <code>pages/popup/src/Popup.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-          style={{ color: theme === 'light' ? '#0281dc' : undefined, marginBottom: '10px' }}>
-          Learn React!
-        </a>
+        <button className='p-4 bg-green-300 text-emerald-950 rounded-md font-bold hover:font-extrabold'
+          onClick={getOdometer}
+          >Update Odometer</button>
         <ToggleButton>Toggle theme</ToggleButton>
       </header>
     </div>

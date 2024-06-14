@@ -1,3 +1,4 @@
+import sql from 'mssql';
 import { toggleTheme } from '@lib/toggleTheme';
 import { getOdometer } from './getOdometer';
 
@@ -5,6 +6,18 @@ console.log('content script loaded');
 
 void toggleTheme();
 void getOdometer();
+
+(async () => {
+  try {
+      // make sure that any items are correctly URL encoded in the connection string
+      await sql.connect('Server=localhost,1433;Database=database;User Id=syspa2;Password=jdpl#1904jdpl#1904;Encrypt=true')
+      const result = await sql.query`select * from mytable where id = ${i}`
+      console.dir(result)
+  } catch (err) {
+      // ... error checks
+  }
+})()
+
 
 chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
     if (request.action === 'getOdometer') {
@@ -26,7 +39,7 @@ chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
               origin: 'https://impas.pertamina.com',
               priority: 'u=0, i',
               referer: 'https://impas.pertamina.com/Reporting/FuelUsageHist',
-              'sec-ch-ua': '"Google Chrome";v="125", "Chromium";v="125", "Not.A/Brand";v="24"',
+              'sec-ch-ua': '"Google Chrome";v="125 "Chromium";v="125", "Not.A/Brand";v="24"',
               'sec-ch-ua-mobile': '?0',
               'sec-ch-ua-platform': '"macOS"',
               'sec-fetch-dest': 'empty',

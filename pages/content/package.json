@@ -19,10 +19,12 @@
   },
   "dependencies": {
     "@chrome-extension-boilerplate/shared": "workspace:*",
-    "@chrome-extension-boilerplate/storage": "workspace:*"
+    "@chrome-extension-boilerplate/storage": "workspace:*",
+    "mssql": "^10.0.2"
   },
   "devDependencies": {
+    "@chrome-extension-boilerplate/hmr": "workspace:*",
     "@chrome-extension-boilerplate/tsconfig": "workspace:*",
-    "@chrome-extension-boilerplate/hmr": "workspace:*"
+    "@types/mssql": "^9.1.5"
   }
 }

@@ -22,6 +22,7 @@ chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
     });
     return true; // Indicates asynchronous response
   }
+  return true;
 });
 
 // Make sure listeners are registered immediately

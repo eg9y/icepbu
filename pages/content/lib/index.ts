@@ -8,14 +8,14 @@ void getOdometer();
 
 chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
   if (request.action === 'getOdometer') {
-    chrome.runtime.sendMessage({ action: "getCookie" }, (response) => {
+    chrome.runtime.sendMessage({ action: "getCookie" }, (response: any) => {
       if (response.cookie) {
         // Select the elements using querySelector
         const accountNumberElement = document.querySelector("#grid_grid_filter_data_0_1");
         const periodRangeElement = document.querySelector("#grid_grid_filter_data_1_1");
 
-        let accountNumber;
-        let periodRange;
+        let accountNumber: any;
+        let periodRange: any;
 
         // Check if the elements exist and get their text content
         if (accountNumberElement) {
@@ -104,10 +104,12 @@ chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
 
         return true; // Indicates asynchronous response
       } else {
-        // console.log("ASPXAUTH Cookie not found");
+          return false;        // console.log("ASPXAUTH Cookie not found");
       }
+      return false;
     });
 
     return true; // Indicates asynchronous response
   }
+  return false;
 });

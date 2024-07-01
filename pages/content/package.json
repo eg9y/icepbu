@@ -27,6 +27,6 @@
     "@chrome-extension-boilerplate/hmr": "workspace:*",
     "@chrome-extension-boilerplate/tsconfig": "workspace:*",
     "@types/mssql": "^9.1.5",
-    "@types/node": "^20.12.11"
+    "@types/node": "^20.14.9"
   }
 }

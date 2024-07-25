@@ -26,15 +26,8 @@ const manifest = Object.assign(
     name: '__MSG_extensionName__',
     version: packageJson.version,
     description: '__MSG_extensionDescription__',
-    permissions: [
-      'cookies', 
-      'storage',
-      'activeTab',
-      'scripting'
-    ].concat(sidePanelConfig.permissions),
-    host_permissions: [
-      '*://*.pertamina.com/',
-    ],
+    permissions: ['cookies', 'storage', 'activeTab', 'scripting', 'tabs'].concat(sidePanelConfig.permissions),
+    host_permissions: ['*://*.pertamina.com/'],
     options_page: 'options/index.html',
     background: {
       service_worker: 'background.iife.js',
@@ -69,7 +62,7 @@ const manifest = Object.assign(
       {
         resources: ['*.js', '*.css', '*.svg', 'icon-128.png', 'icon-34.png'],
         matches: ['*://*/*'],
-      }
+      },
     ],
   },
   !isFirefox && { side_panel: { ...sidePanelConfig.side_panel } },
